@@ -51,7 +51,7 @@ func (s *SafeBatchSize) Auto() bool {
 }
 
 var MonitorCmd = &cobra.Command{
-	Use:          "monitor",
+	Use:          "test",
 	Short:        "Monitor blocks using a JSON-RPC endpoint.",
 	Long:         usage,
 	Args:         cobra.NoArgs,
@@ -77,7 +77,7 @@ var MonitorCmd = &cobra.Command{
 }
 
 func init() {
-	MonitorCmd.PersistentFlags().StringVarP(&rpcUrl, "rpc-url", "r", "http://localhost:8545", "The RPC endpoint url")
+	MonitorCmd.PersistentFlags().StringVarP(&rpcUrl, "rpc", "r", "http://localhost:8545", "The RPC endpoint url")
 	MonitorCmd.PersistentFlags().StringVarP(&batchSizeValue, "batch-size", "b", "auto", "Number of requests per batch")
 	MonitorCmd.PersistentFlags().IntVarP(&subBatchSize, "sub-batch-size", "s", 50, "Number of requests per sub-batch")
 	MonitorCmd.PersistentFlags().IntVarP(&blockCacheLimit, "cache-limit", "c", 200, "Number of cached blocks for the LRU block data structure (Min 100)")
