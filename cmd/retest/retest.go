@@ -6,11 +6,6 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	ethcommon "github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/0xPolygon/polygon-cli/abi"
-	"github.com/rs/zerolog/log"
-	"github.com/spf13/cobra"
 	"io"
 	"math"
 	"math/big"
@@ -19,6 +14,12 @@ import (
 	"reflect"
 	"regexp"
 	"strings"
+
+	"github.com/P8api/cw-cli/abi"
+	ethcommon "github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/common/hexutil"
+	"github.com/rs/zerolog/log"
+	"github.com/spf13/cobra"
 )
 
 var (
@@ -330,7 +331,7 @@ func EthTestDataToString(data EthTestData) string {
 		// We have few tests with numeric code, ex:
 		// "code": 16449,
 		return processStorageData(data.(float64))
-	
+
 	default:
 		log.Fatal().Any("input", data).Str("kind", v.Kind().String()).Msg("Attempted to convert unknown type to raw data")
 	}
@@ -390,7 +391,7 @@ func processStorageData(data any) string {
 	} else {
 		log.Fatal().Any("data", data).Msg("unknown storage data type")
 	}
-	if len(result) % 2 != 0 {
+	if len(result)%2 != 0 {
 		result = "0" + result
 	}
 	return result
@@ -661,21 +662,20 @@ func WrapPredeployedCode(pre EthTestPre) string {
 	storageInitCode := storageToByteCode(pre.Storage)
 
 	codeCopySize := len(deployedCode) / 2
-	codeCopyOffset := (len(storageInitCode) / 2) + 13 + 8  // 13 for CODECOPY + 8 for RETURN
+	codeCopyOffset := (len(storageInitCode) / 2) + 13 + 8 // 13 for CODECOPY + 8 for RETURN
 
 	return fmt.Sprintf(
-		"0x%s"+			// storage initialization code
-		"63%08x"+		// PUSH4 to indicate the size of the data that should be copied into memory
-		"63%08x"+		// PUSH4 to indicate the offset in the call data to start the copy
-		"6000"+			// PUSH1 00 to indicate the destination offset in memory
-		"39"+			// CODECOPY
-		"63%08x"+		// PUSH4 to indicate the size of the data to be returned from memory
-		"6000"+			// PUSH1 00 to indicate that it starts from offset 0
-		"F3"+			// RETURN
-		"%s",			// CODE starts here.
+		"0x%s"+ // storage initialization code
+			"63%08x"+ // PUSH4 to indicate the size of the data that should be copied into memory
+			"63%08x"+ // PUSH4 to indicate the offset in the call data to start the copy
+			"6000"+ // PUSH1 00 to indicate the destination offset in memory
+			"39"+ // CODECOPY
+			"63%08x"+ // PUSH4 to indicate the size of the data to be returned from memory
+			"6000"+ // PUSH1 00 to indicate that it starts from offset 0
+			"F3"+ // RETURN
+			"%s", // CODE starts here.
 		storageInitCode, codeCopySize, codeCopyOffset, codeCopySize, deployedCode)
 }
-
 
 // storageToByteCode
 func storageToByteCode(storage map[string]EthTestNumeric) string {

@@ -9,9 +9,9 @@ import (
 	"sync"
 	"time"
 
+	"github.com/P8api/cw-cli/rpctypes"
+	"github.com/P8api/cw-cli/util"
 	ethcommon "github.com/ethereum/go-ethereum/common"
-	"github.com/0xPolygon/polygon-cli/rpctypes"
-	"github.com/0xPolygon/polygon-cli/util"
 	"github.com/rs/zerolog"
 	"github.com/spf13/cobra"
 	"golang.org/x/time/rate"
