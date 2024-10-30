@@ -12,10 +12,10 @@ import (
 
 	_ "embed"
 
+	"github.com/P8api/cw-cli/proto/gen/pb"
+	"github.com/P8api/cw-cli/rpctypes"
+	"github.com/P8api/cw-cli/util"
 	ethrpc "github.com/ethereum/go-ethereum/rpc"
-	"github.com/0xPolygon/polygon-cli/proto/gen/pb"
-	"github.com/0xPolygon/polygon-cli/rpctypes"
-	"github.com/0xPolygon/polygon-cli/util"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 	"golang.org/x/exp/slices"

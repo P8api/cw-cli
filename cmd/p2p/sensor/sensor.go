@@ -32,9 +32,9 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 
-	"github.com/0xPolygon/polygon-cli/p2p"
-	"github.com/0xPolygon/polygon-cli/p2p/database"
-	"github.com/0xPolygon/polygon-cli/rpctypes"
+	"github.com/P8api/cw-cli/p2p"
+	"github.com/P8api/cw-cli/p2p/database"
+	"github.com/P8api/cw-cli/rpctypes"
 )
 
 type (

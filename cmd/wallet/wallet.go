@@ -7,7 +7,7 @@ import (
 
 	_ "embed"
 
-	"github.com/0xPolygon/polygon-cli/hdwallet"
+	"github.com/P8api/cw-cli/hdwallet"
 	"github.com/spf13/cobra"
 )
 

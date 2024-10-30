@@ -5,11 +5,11 @@ import (
 
 	_ "embed"
 
-	"github.com/0xPolygon/polygon-cli/cmd/p2p/crawl"
-	"github.com/0xPolygon/polygon-cli/cmd/p2p/nodelist"
-	"github.com/0xPolygon/polygon-cli/cmd/p2p/ping"
-	"github.com/0xPolygon/polygon-cli/cmd/p2p/query"
-	"github.com/0xPolygon/polygon-cli/cmd/p2p/sensor"
+	"github.com/P8api/cw-cli/cmd/p2p/crawl"
+	"github.com/P8api/cw-cli/cmd/p2p/nodelist"
+	"github.com/P8api/cw-cli/cmd/p2p/ping"
+	"github.com/P8api/cw-cli/cmd/p2p/query"
+	"github.com/P8api/cw-cli/cmd/p2p/sensor"
 )
 
 //go:embed usage.md
